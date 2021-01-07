@@ -1,0 +1,11 @@
+---
+title: "data"
+author: "NathNils"
+date: "07/01/2021"
+output: html_document
+---
+
+Displayed in this dashboard are Swedish educational data downloaded from [Statistiska centralbyrån](https://www.scb.se). The data spans the years between `r min(ub_data$year)` and `r max(ub_data$year)` and are stratified by region and sex. The data used in this dashboard was modified as follows before visualization:
+  
+  * converted from wide to long format (>> 'year' and 'number' columns created)
+  * age, education level and gender were translated into English (see below for the translation of the educational levels)
