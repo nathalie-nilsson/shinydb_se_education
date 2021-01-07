@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Source+Sans+Pro&display=swap');
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald';
+  color: Gainsboro;
+}
+
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+/* horizontal lines */
+hr {
+  margin-top: 0;
+  border-top: 1px groove;
+}
+
+/* Header font */
+.main-header .logo {
+  font-family: 'Oswald', Times, "Times New Roman", "Segoe UI";
+  font-weight: bold;
+  font-size: 24px;
+  text-align: left;
+}
+
+/* Header color */
+.skin-blue .main-header .logo {
+  background-color: #303030;
+  color: Gainsboro;
+}
+
+/* Header color when hovered */
+.skin-blue .main-header .logo:hover {
+  background-color: #303030;
+}
+
+/* Menu toggle */
+.skin-blue .main-header .sidebar-toggle .active a{
+  background-color: #303030;
+}
+
+/* menu toggle hover */
+.skin-blue .main-header .navbar .sidebar-toggle:hover{
+  background-color: #505050;
+}
+
+/* navbar color (rest of the header) */
+.skin-blue .main-header .navbar {
+  background-color: #303030;
+}
+
+/* sidebar font*/
+.main-sidebar {
+  font-family: 'Source Sans Pro';
+  font-size: 16px;
+}
+
+.skin-blue .main-sidebar {
+  border-color: Green;
+}
+
+/* sidebar menu items */
+.skin-blue .sidebar-menu>li>a {
+    border-left: 5px solid transparent;
+}
+
+.skin-blue .sidebar-menu>li.active>a, 
+.skin-blue .sidebar-menu>li:hover>a {
+    border-left-color: Green;
+}
+
+/* body */
+.content-wrapper, .right-side {
+  background-color: #303030;
+  border-left-color: Green;
+  border-top-color: Green;
+  border-bottom-color: Green;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  color: Gainsboro;
+}
+
+/* main sidebar */
+.skin-blue .main-sidebar {
+  background-color: #505050;
+}
+
+/* active selected tab in the sidebarmenu */
+.skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
+  background-color: #303030;
+}
+
+/* other links in the sidebarmenu */
+.skin-blue .main-sidebar .sidebar .sidebar-menu a{
+  background-color: #505050;
+  color: Gainsboro;
+}
+
+/* Boxes */
+.box.box-solid.box-primary>.box-header {
+  color: Gainsboro;
+  background: #303030;
+}
+
+.box.box-solid.box-primary{
+  color: Gainsboro;
+  border-color: transparent;
+  background-color: #303030;
+  border-top-color: Green
+  margin: 20px;
+}
+
+/* Sliders */
+.irs .irs-line {
+  border-color: #505050;
+  color: Gainsboro;
+}
+
+.irs .irs-bar {
+  background-color: Green;
+  border-color: Green;
+}
+
+.irs .irs-bar-edge {
+  background: Green;
+  border: Green;
+}
+
+.irs .irs-single {
+  background: Green;
+  font-size: 12px;
+  padding: 0px 3px;
+}
+
+.irs .irs-min {
+  background-color: #303030;
+  color: Gainsboro;
+  font-size: 12px;
+}
+
+.irs .irs-max {
+  background-color: #303030;
+  color: Gainsboro;
+  font-size: 12px;
+}
+
+/* other links in the sidebarmenu when hovered
+.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+  background-color: #ff69b4;
+}
+
+ toggle button when hovered
+.skin-blue .main-header .navbar .sidebar-toggle:hover{
+  background-color: #ff69b4;
+}
+*/
