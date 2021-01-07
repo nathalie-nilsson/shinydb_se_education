@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Source+Sans+Pro&display=swap');
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+/* Header formats */
+.h1, .h2, .h3, h1, h2, h3 {
   font-family: 'Oswald';
   color: Gainsboro;
 }
 
 .h4, .h5, .h6, h4, h5, h6 {
-    margin-top: 10px;
-    margin-bottom: 3px;
+  font-family: 'Oswald';
+  color: Gainsboro;
+  margin-top: 10px;
+  margin-bottom: 3px;
 }
 
 /* horizontal lines */
@@ -16,7 +19,7 @@ hr {
   border-top: 1px groove;
 }
 
-/* Header font */
+/* dashBoardHeader font */
 .main-header .logo {
   font-family: 'Oswald', Times, "Times New Roman", "Segoe UI";
   font-weight: bold;
@@ -24,13 +27,13 @@ hr {
   text-align: left;
 }
 
-/* Header color */
+/* dashBoardHeader color */
 .skin-blue .main-header .logo {
   background-color: #303030;
   color: Gainsboro;
 }
 
-/* Header color when hovered */
+/* dashBoardHeader color when hovered */
 .skin-blue .main-header .logo:hover {
   background-color: #303030;
 }
@@ -103,11 +106,11 @@ hr {
   background: #303030;
 }
 
-.box.box-solid.box-primary{
+.box.box-solid.box-primary {
   color: Gainsboro;
-  border-color: transparent;
+  border-color: #303030;
   background-color: #303030;
-  border-top-color: Green
+  padding: 20px;
   margin: 20px;
 }
 
@@ -118,19 +121,19 @@ hr {
 }
 
 .irs .irs-bar {
-  background-color: Green;
-  border-color: Green;
+  background-color: Orange;
+  border-color: Orange;
 }
 
 .irs .irs-bar-edge {
-  background: Green;
-  border: Green;
+  background: Orange;
+  border: Orange;
 }
 
 .irs .irs-single {
-  background: Green;
+  background: Orange;
   font-size: 12px;
-  padding: 0px 3px;
+  padding: 0 3px;
 }
 
 .irs .irs-min {
