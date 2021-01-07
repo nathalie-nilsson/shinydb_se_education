@@ -16,7 +16,7 @@ dict_replace <- function(datapoint, value, key) {
   key[datapoint == value]
 }
 
-my.theme <- theme(legend.position = "right",
+my.theme <- theme(legend.position = "none",
                   #legend.key = element_blank(),
                   legend.background = element_blank(),
                   axis.line = element_line(colour = "Gainsboro"),
