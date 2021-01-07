@@ -17,10 +17,4 @@ library(shinydashboard)
 
 
 # Header -----------------------------------------------------------------------
-header <- dashboardHeader(
-  # title = span(
-  #   tagList(
-  #     icon("education", lib = "glyphicon")
-  #     )),
-  titleWidth = "0px"
-)
+header <- dashboardHeader(disable = TRUE)

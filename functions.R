@@ -35,3 +35,4 @@ my.theme <- theme(legend.position = "none",
                   strip.placement = "inside",
                   strip.text = element_text(color = "Gainsboro"),
                   plot.title.position = "plot")
+

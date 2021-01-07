@@ -12,11 +12,12 @@
 
 body <- dashboardBody(
   
-  # Format
+  # Stylesheet
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "app_style.css")
   ),
   
+  # Header ----------------------------------------------------------------------
   fluidRow(
     h3(icon("education", lib="glyphicon")),
     h1("Education in Sweden"),
@@ -27,37 +28,30 @@ body <- dashboardBody(
   
   hr(),
   
-  tabItems(
-    
-    # Dashboard ----------------------------------------------------------------
-    
-    tabItem(
-      tabName = "db",
-      fluidRow(
-        column(width = 7, 
-               align = "center", 
-               h2("Population proportional educational levels:")
-        ), 
-        
-        column(width = 5, 
-               align = "center", 
-               h2("Education levels plotted over time:"),
-               h4(textOutput("opEdu")),
-        )
-      ), 
+  fluidRow(
+    tabBox(
+      id = "se_edu_dashboard", 
+      height = "100%",
+      width = "100%",
       
-      fluidRow(
+      # Dashboard ----------------------------------------------------------------
+      
+      tabPanel(
+        # tab tag
+        tagList(icon("dashboard"), "Dashboard"),
+        width = "100%",
         
+        # Input column ---------------------------------------------------------
         column(
-          width = 7,
+          width = 3,
 
+          # Year input --------------------------------------------------------
           box(
             width = NULL, 
-            align = "center", 
-            status = "primary", 
-            solidHeader = TRUE, 
-            
-            h4("Select year:"),
+            status = "primary",
+            solidHeader = TRUE,
+
+            title = h4("Select year:"),
             sliderInput("sliderYear", "",
                         value = 2000,
                         min = min(ub.en$year), 
@@ -66,85 +60,47 @@ body <- dashboardBody(
                         sep = "",
                         width = "100%", 
                         animate = animationOptions(
-                          interval = 2000, 
+                          interval = 1500, 
                           loop = TRUE))
+            
           ),
           
+          # Education level input ----------------------------------------------
           box(
             width = NULL, 
-            status = "primary", 
-            solidHeader = TRUE,
-            align = "center",
-
-            h2(textOutput("opYear")),
-            hr(),
-            
-            # Value boxes ------------------------------------------------------
-            fluidRow(
-              column(
-                width = 7/3,
-                align = "left",
-                valueBoxOutput(outputId = "vbTotal")
-              ),
-              column(
-                width = 7/3,
-                align = "left", 
-                valueBoxOutput(outputId = "vbMen")
-              ),
-              column(
-                width = 7/3, 
-                align = "left", 
-                valueBoxOutput(outputId = "vbWomen")
-              )
-            )
-          ), 
-            
-            # Pie plot -------------------------------------------------------
-          box(
-            width = NULL,
             status = "primary",
             solidHeader = TRUE,
-            align = "center",
 
-            plotlyOutput("piePlot")
-          )
-        ),
-        
-        column(
-          width = 3,
-
-          # Line plot ----------------------------------------------------------
-          box(
-            width = NULL,
-            status = "primary",
-            solidHeader = TRUE,
-            align = "center",
-
-            plotlyOutput(outputId = "linePlot", height = "600px")
-          )
-        ),
-        
-        column(
-          width = 2,
-          box(
-            width = NULL, 
-            status = "primary", 
-            solidHeader = TRUE, 
-            
-            h3("Select education level:"),
+            title = h4("Select education level:"), 
             pickerInput(
               inputId = "pickerLevel",
-              choices = unique(ub.en$edu),
-              selected = unique(ub.en$edu)[5]
-            ),
-            h3("Select age group:"),
+              choices = levels(ub.en$edu),
+              selected = levels(ub.en$edu)[6]
+            )
+          ),
+          
+          # Age group input -------------------------------------------------------
+          box(
+            width = NULL, 
+            status = "primary",
+            solidHeader = TRUE,
+
+            title = h4("Select age group:"), 
             sliderTextInput(
               inputId = "sliderAge",
               label = "",
               choices = unique(ub.en$age),
               selected = unique(ub.en$age)[3]
-            ),
-            h3("Select regions:"),
+            )
+          ),
+          
+          # Region input -----------------------------------------------------------
+          box(
+            width = NULL, 
+            status = "primary",
+            solidHeader = TRUE,
+
+            title = h4("Select regions:"),
             prettyCheckboxGroup(
               inputId = "checkRegion",
               label = "",
@@ -153,49 +109,97 @@ body <- dashboardBody(
               status = "warning"
             )
           )
-        )
-      )
-    ),
-    
-    # Source data --------------------------------------------------------------
-    tabItem(
-      tabName = "sd",
-      fluidRow(
+        ),
         
-        # Population column
+        # Output column ----------------------------------------------------------------------
         column(
-          width = 7,
+          width = 9,
           
-          # Value boxes
+          h2(textOutput("opYear")),
+          hr(),
+          
+          # Value boxes output ----------------------------------------------------------------------
           box(
             width = NULL, 
+            status = "primary",
             solidHeader = TRUE,
-            status = "primary", 
-            column(width = 7/3,
-                   valueBox(250, "total")), 
-            column(width = 7/3,
-                   valueBox(100, "male")), 
-            column(width = 7/3, 
-                   valueBox(150, "female"))
+            
+            valueBoxOutput(outputId = "vbTotal"), 
+            valueBoxOutput(outputId = "vbMen"), 
+            valueBoxOutput(outputId = "vbWomen")
           ),
           
+          # Pie chart ----------------------------------------------------------------------
           box(
-            title = "Title 1", 
             width = NULL, 
-            solidHeader = TRUE, 
             status = "primary",
-            "Box content"
+            solidHeader = TRUE,
+            
+            plotlyOutput("piePlot")
+          ),
+          
+          h2("Over time"),
+          h4(textOutput("opEdu")),
+          hr(),
+          
+          # Line chart ----------------------------------------------------------------------
+          box(
+            width = NULL, 
+            status = "primary",
+            solidHeader = TRUE,
+            
+            plotlyOutput(outputId = "linePlot")
           )
         )
+      ),
+      
+      # Data source ----------------------------------------------------------------------
+      
+      tabPanel(
+        # tab tag
+        tagList(icon("database"), "Data"),
+        width = "100%",
+        
+        box(
+          width = NULL, 
+          status = "primary",
+          solidHeader = TRUE,
+          
+          includeMarkdown("data.Rmd"),
+          
+          fluidRow(
+            box(width = NULL,
+                status = "warning",
+                title = h4("The data:"),
+                tags$style(HTML("color: #303030")),
+                dataTableOutput("table")
+            ),
+            
+            box(
+              width = NULL,
+              h4("Educational levels translated:"),
+              status = "warning",
+              tags$style(HTML("color: #303030")),
+              tableOutput("dict")
+            )
+          )
+        )   
+      ),
+      
+      # Source code ----------------------------------------------------------------------
+      tabPanel(
+        tagList(icon("github", "SOURCE CODE"), "Source code"),
+        width = "100%", 
+        
+        box(
+          width = NULL, 
+          status = "primary",
+          solidHeader = TRUE,
+          
+          p("Find the source code at: [some address]")
+        )
+        
       )
-    ),
-    
-    # Source code --------------------------------------------------------------
-    tabItem(tabName = "sc", 
-            fluidRow(
-              box("Here goes the code", 
-                  status = "primary", 
-                  solidHeader = TRUE)
-            ))
+    )
   )
 )

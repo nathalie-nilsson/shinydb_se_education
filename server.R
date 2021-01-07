@@ -117,7 +117,9 @@ server <- function(input, output) {
   })
   
   # Output: Selected year ------------------------------------------------------
-  output$opYear <- renderText({input$sliderYear})
+  output$opYear <- renderText({
+    paste("Year", input$sliderYear)
+  })
   
   # Output: Selected educational level & age group -----------------------------
   output$opEdu <- renderText({
@@ -138,8 +140,9 @@ server <- function(input, output) {
     plot_ub <- ggplot(ub_plot, aes(year, number, group = region, color = region)) +
       geom_line(size=1) +
       geom_point(size=1.5) +
-      facet_grid(gender~.) +
+      facet_grid(~gender) +
       labs(x = "Year") +
+      geom_vline(xintercept = input$sliderYear, linetype = "dashed", color = "Gainsboro") +
       scale_color_viridis_d("D", begin = 0.1) +
       scale_y_continuous(expand = c(0, 0), limits = c(0, 1.10*max(ub_plot$number))) +
       my.theme
@@ -148,4 +151,13 @@ server <- function(input, output) {
     ggplotly(plot_ub)
 
   })
+  
+  # Data table ----------------------------------------------------------------------
+  output$table <- renderDataTable(
+    ub.en, 
+    options = list(paging =TRUE, pageLength =  10)
+    )
+  
+  # Dictionary -----------------------------------------------------------------
+  output$dict <- renderTable(edu_dict)
 }

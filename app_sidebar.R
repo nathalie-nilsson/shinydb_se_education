@@ -10,13 +10,4 @@
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-sidebar <- dashboardSidebar(
-  width = "250px",
-  collapsed = TRUE,
-  sidebarMenu(
-    br(),
-    menuItem("Dashboard", tabName = "db", icon = icon("dashboard")), 
-    menuItem("Data", tabName = "sd", icon = icon("database")), 
-    menuItem("Source code", tabName = "sc", icon = icon("code"))
-  )
-)
+sidebar <- dashboardSidebar(disable = TRUE)
