@@ -12,21 +12,40 @@
 
 server <- function(input, output) {
   
-  # Input: Select all ----------------------------------------------------------
-  observe({
-    if(input$selectAll == 0) {
-      return(NULL)
-      
-    } else if(input$selectAll%%2 == 0) {
-      updateCheckboxGroupButtons(session, inputId = "selectAll", "Select All", 
-                                 choices = unique(ub.en$region),
-                                 selected = unique(ub.en$region))
-      
-    } else {
-      updateCheckboxGroupButtons(session, inputId = "selectAll", "Select All", 
-                                 choices = unique(ub.en$region),
-                                 selected = unique(ub.en$region))
-    }
+  # Value boxes ----------------------------------------------------------------
+  output$vbTotal <- renderValueBox({
+    ub_t <- ub.en %>%
+      filter(year == input$sliderYear) %>%
+      select(number) %>%
+      sum()
+    valueBox(value = ub_t, 
+             icon = icon("users"),
+             subtitle = "Total", 
+             color = "orange")
+  })
+  
+  output$vbMen <- renderValueBox({ 
+    ub_m <- ub.en %>%
+      filter(year == input$sliderYear, 
+             gender == "Men") %>%
+      select(number) %>%
+      sum()
+    valueBox(value = ub_m, 
+             icon = icon("mars"),
+             subtitle = "Number of men", 
+             color = "navy")
+  })
+  
+  output$vbWomen <- renderValueBox({
+    ub_f <- ub.en %>%
+      filter(year == input$sliderYear, 
+             gender == "Women") %>%
+      select(number) %>%
+      sum()
+    valueBox(value = ub_f,
+             icon = icon("venus"), 
+             subtitle = "Number of women", 
+             color = "fuchsia")
   })
   
   # Pie chart ------------------------------------------------------------------
