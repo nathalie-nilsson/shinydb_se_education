@@ -32,79 +32,33 @@ body <- dashboardBody(
     # Dashboard ----------------------------------------------------------------
     
     tabItem(
-      tabName = "db", 
+      tabName = "db",
       fluidRow(
-        # input column
-        column(
-          width = 2,
-          box(
-            width = NULL,
-            align = "center",
-            status = "primary",
-            solidHeader = TRUE,
-            
-            h3("Select educational level:"),
-            selectInput("pickerLevel", "",
-                        choices = unique(ub.en$edu), 
-                        selected = "High school, 3 years", 
-                        selectize = TRUE),
-            br(),
-            
-            h3("Select age group:"),
-            sliderTextInput(
-              inputId = "sliderAge",
-              label = "",
-              grid = TRUE,
-              selected = "45-54 years",
-              #force_edges = TRUE,
-              #value = "45-54 years",
-              choices = unique(ub.en$age)
-            ),
-            br(),
-            
-            h3("Select regions:"),
-            prettyCheckboxGroup(
-              inputId = "checkRegion",
-              label = "",
-              status = "warning", 
-              choices = unique(ub.en$region),
-              selected = unique(ub.en$region)[c(1, 2, 3)]
-            ),
-            actionLink("selectAll", "Select All")
-          )
-        ),
+        column(width = 7, 
+               align = "center", 
+               h2("Population proportional educational levels:")
+        ), 
         
-        # Output column
+        column(width = 5, 
+               align = "center", 
+               h2("Education levels plotted over time:"),
+               h4(textOutput("opEdu")),
+        )
+      ), 
+      
+      fluidRow(
+        
         column(
-          width = 10,
-          
+          width = 7,
+
           box(
-            width = NULL,
-            status = "primary",
-            solidHeader = TRUE,
-            align = "center",
-            h2("Education levels plotted over time:"),
-            h4(textOutput("opEdu")),
-            plotlyOutput(outputId = "linePlot")
-          ),
-          
-          box(
-            width = NULL,
-            status = "primary",
-            solidHeader = TRUE,
-            align = "center",
-            h2("Population proportional educational levels:"),
-            h4(textOutput("opYear")),
-            plotlyOutput("piePlot")
-          ),
-          
-          box(
-            width = NULL,
-            status = "primary",
-            solidHeader = TRUE,
-            align = "center",
-            h3("Select year:"),
-            sliderInput("sliderYear", "Year",
+            width = NULL, 
+            align = "center", 
+            status = "primary", 
+            solidHeader = TRUE, 
+            
+            h4("Select year:"),
+            sliderInput("sliderYear", "",
                         value = 2000,
                         min = min(ub.en$year), 
                         max = max(ub.en$year),
@@ -114,6 +68,90 @@ body <- dashboardBody(
                         animate = animationOptions(
                           interval = 2000, 
                           loop = TRUE))
+          ),
+          
+          box(
+            width = NULL, 
+            status = "primary", 
+            solidHeader = TRUE,
+            align = "center",
+
+            h2(textOutput("opYear")),
+            hr(),
+            
+            # Value boxes ------------------------------------------------------
+            fluidRow(
+              column(
+                width = 7/3,
+                align = "left",
+                valueBoxOutput(outputId = "vbTotal")
+              ),
+              column(
+                width = 7/3,
+                align = "left", 
+                valueBoxOutput(outputId = "vbMen")
+              ),
+              column(
+                width = 7/3, 
+                align = "left", 
+                valueBoxOutput(outputId = "vbWomen")
+              )
+            )
+          ), 
+            
+            # Pie plot -------------------------------------------------------
+          box(
+            width = NULL,
+            status = "primary",
+            solidHeader = TRUE,
+            align = "center",
+
+            plotlyOutput("piePlot")
+          )
+        ),
+        
+        column(
+          width = 3,
+
+          # Line plot ----------------------------------------------------------
+          box(
+            width = NULL,
+            status = "primary",
+            solidHeader = TRUE,
+            align = "center",
+
+            plotlyOutput(outputId = "linePlot", height = "600px")
+          )
+        ),
+        
+        column(
+          width = 2,
+          box(
+            width = NULL, 
+            status = "primary", 
+            solidHeader = TRUE, 
+            
+            h3("Select education level:"),
+            pickerInput(
+              inputId = "pickerLevel",
+              choices = unique(ub.en$edu),
+              selected = unique(ub.en$edu)[5]
+            ),
+            h3("Select age group:"),
+            sliderTextInput(
+              inputId = "sliderAge",
+              label = "",
+              choices = unique(ub.en$age),
+              selected = unique(ub.en$age)[3]
+            ),
+            h3("Select regions:"),
+            prettyCheckboxGroup(
+              inputId = "checkRegion",
+              label = "",
+              choices = unique(ub.en$region),
+              selected = unique(ub.en$region),
+              status = "warning"
+            )
           )
         )
       )
@@ -124,9 +162,23 @@ body <- dashboardBody(
       tabName = "sd",
       fluidRow(
         
-        # Input column
+        # Population column
         column(
-          width = 12,
+          width = 7,
+          
+          # Value boxes
+          box(
+            width = NULL, 
+            solidHeader = TRUE,
+            status = "primary", 
+            column(width = 7/3,
+                   valueBox(250, "total")), 
+            column(width = 7/3,
+                   valueBox(100, "male")), 
+            column(width = 7/3, 
+                   valueBox(150, "female"))
+          ),
+          
           box(
             title = "Title 1", 
             width = NULL, 
