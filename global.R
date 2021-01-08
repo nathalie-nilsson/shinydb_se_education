@@ -19,9 +19,9 @@ library(extrafont)
 loadfonts(quiet = TRUE)
 library(plotly)
 
-
 # Functions --------------------------------------------------------------------
 source('./functions.R')
+source('./icons.R')
 
 
 # Data -------------------------------------------------------------------------
