@@ -1,16 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Source+Sans+Pro&display=swap');
 
 /* Header formats */
-.h1, .h2, .h3, h1, h2, h3 {
+.h2, .h3, h2, h3 {
   font-family: 'Oswald';
   color: Gainsboro;
 }
 
-.h4, .h5, .h6, h4, h5, h6 {
+.h1, h1 {
+  font-family: 'Oswald';
+  color: Gainsboro;
+  margin-top: 0;
+}
+
+.h4, .h5, h4, h5 {
   font-family: 'Oswald';
   color: Gainsboro;
   margin-top: 3px;
   margin-bottom: 3px;
+}
+
+.h6, h6 {
+  font-family: Source Sans Pro;
+  color: Gainsboro;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 18px;
+  text-align: right;
+  margin-right: 1px;
 }
 
 /*.nav-tabs>li>a {
@@ -21,8 +37,14 @@
   margin-bottom: 20px;
   margin-left: 20px;
   margin-right: 20px;
-  background: #303030;
   border-radius: 3px;
+  box-shadow: none;
+  background: #202020;
+}
+
+.nav-tabs-custom>.nav-tabs>li.header {
+  font-size: 36px;
+  color: Gainsboro;
 }
 
 .nav-tabs-custom>.nav-tabs>li.active {
@@ -33,6 +55,8 @@
     color: Gray;
     border-radius: 0;
     background-color: Black;
+    padding-top: 19px;
+    padding-bottom: 18px;
 }
 
 .nav-tabs-custom>.tab-content {
@@ -43,8 +67,12 @@
   border-top: 1px solid orange;
 }
 
+.small-box .icon-large {
+  right: 25px;
+}
+
 .nav-tabs-custom>.nav-tabs {
-  margin: 0;
+  margin: 30px 0 0 0;
   border-top-color: Green;
   border-bottom-color: #303030;
   border-top-right-radius: 3px;
@@ -69,7 +97,6 @@
 .nav-tabs-custom>.nav-tabs>li.active>a {
     background-color: #303030;
     color: Gainsboro;
-    border-top-color: Green;
 }
 
 /* horizontal lines */
@@ -134,10 +161,7 @@ hr {
 
 /* body */
 .content-wrapper, .right-side {
-  background-color: #303030;
-  border-left-color: Green;
-  border-top-color: Green;
-  border-bottom-color: Green;
+  background-color: #202020;
   border-top-width: 1px;
   border-bottom-width: 1px;
   color: Gainsboro;
@@ -161,13 +185,15 @@ hr {
 
 /* Boxes */
 .box {
-    position: relative;
-    border-radius: 3px;
-    background: #fff;
-    border-top: 3px solid #d2d6de;
-    margin-bottom: 20px;
-    width: 100%;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  position: relative;
+  border-radius: 3px;
+  background: #fff;
+  border-top: 3px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .box.box-warning {
@@ -188,41 +214,55 @@ hr {
   border-color: #303030;
   background-color: #303030;
   padding: 5px 20px 10px 20px;
-  margin: 20px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin: 20px 0 20px 0;
 }
 
 /* Sliders */
+.irs {
+  height: 50px;
+}
+
+.irs-slider.single {
+  top: 29px;
+}
+
 .irs .irs-line {
   border-color: #505050;
   color: Gainsboro;
+  top: 35px;
 }
 
 .irs .irs-bar {
   background-color: Orange;
   border-color: Orange;
+  top: 35px;
 }
 
 .irs .irs-bar-edge {
   background: Orange;
   border: Orange;
+  top: 35px;
 }
 
 .irs .irs-single {
   background: Orange;
-  font-size: 12px;
+  font-size: 18px;
   padding: 0 3px;
 }
 
 .irs .irs-min {
   background-color: #303030;
   color: Gainsboro;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .irs .irs-max {
   background-color: #303030;
   color: Gainsboro;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 /* other links in the sidebarmenu when hovered
