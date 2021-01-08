@@ -30,7 +30,7 @@ body <- dashboardBody(
       id = "se_edu_dashboard",
       title = tagList(icon("education", lib="glyphicon"), 
                       "Education in Sweden", 
-                    h6(paste(min(ub.en$year), "-", max(ub.en$year)))),
+                      h6(paste(min(ub.en$year), "-", max(ub.en$year)))),
       height = "100%",
       width = "100%",
       
@@ -207,10 +207,11 @@ body <- dashboardBody(
           status = "primary",
           solidHeader = TRUE,
           
-          p("Find the source code at: [some address]")
+          h4(uiOutput("githubLink"))
         )
-        
       )
     )
   )
 )
+  
+  
