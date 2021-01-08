@@ -172,7 +172,7 @@ body <- dashboardBody(
           status = "primary",
           solidHeader = TRUE,
           
-          includeMarkdown("data.Rmd"),
+          includeMarkdown("./data/data.Rmd"),
           
           column(
             width = 9,
