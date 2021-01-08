@@ -1,8 +1,8 @@
 # =============================================================================
-#   
+#
 #  Script name ...... app_header.R
 #  Project .......... shinydb_se_education
-#  Script purpose ... Define shiny dashboard header 
+#  Script purpose ... Define shiny dashboard header
 #
 #  Author ........... Nathalie Nilsson
 #
@@ -10,11 +10,4 @@
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Packages ---------------------------------------------------------------------
-library(shiny)
-library(shinyWidgets)
-library(shinydashboard)
-
-
-# Header -----------------------------------------------------------------------
 header <- dashboardHeader(disable = TRUE)
