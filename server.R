@@ -152,7 +152,7 @@ server <- function(input, output) {
 
   })
   
-  # Data table ----------------------------------------------------------------------
+  # Data table -----------------------------------------------------------------
   output$table <- renderDataTable(
     ub.en, 
     options = list(paging =TRUE, pageLength =  10)
@@ -160,4 +160,13 @@ server <- function(input, output) {
   
   # Dictionary -----------------------------------------------------------------
   output$dict <- renderTable(edu_dict)
+  
+  # GitHub link ----------------------------------------------------------------
+  url <- a("shinydb_se_education code", 
+           href="https://github.com/nathalie-nilsson/shinydb_se_education/", 
+           style = "color: orange; font-family: 'Source Sans Pro")
+  output$githubLink <- renderUI({
+    tagList(icon("github"), url)
+  })
+  
 }
