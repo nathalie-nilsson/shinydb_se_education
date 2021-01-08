@@ -11,6 +11,12 @@
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+library(tidyverse)
+library(viridis)
+library(extrafont)
+loadfonts(quiet = TRUE)
+library(plotly)
+
 # Functions --------------------------------------------------------------------
 source('./functions.R')
 source('./icons.R')
@@ -18,9 +24,9 @@ source('./icons.R')
 
 # Data -------------------------------------------------------------------------
 # Source: https://www.scb.se.
-ub <- read.csv2("./data/scb_befolkningEfterUtbildningsNivå_län.csv",
-                sep = ";",
-                skip = 2)
+ub <- read.table("scb_se_education.txt",
+                sep = "\t", header = TRUE,
+                fileEncoding = "UTF-8")
 
 # Convert from wide to long format
 ub.l <- ub %>%
@@ -29,7 +35,7 @@ ub.l <- ub %>%
 ub.l$year <- as.numeric(gsub("X", "", ub.l$year)) # remove 'X' from 'year' column and convert to numeric
 
 # Create dictionary for translating educational levels
-edu_dict <- data.frame(se_level = unique(ub.l$utbildningsnivå),
+edu_dict <- data.frame(se_level = unique(ub.l$utbildningsniva),
                        en_level = c("Pre-high school, <9 years",
                                     "Pre-high school, 9 (10) years",
                                     "High school, 2 years",
@@ -40,11 +46,11 @@ edu_dict <- data.frame(se_level = unique(ub.l$utbildningsnivå),
                                     "Missing data"))
 
 # Translation
-ub.l$age  <- gsub("år", "years", ub.l$ålder)
-ub.l$gender <- factor(ub.l$kön,
-                      levels = c("män", "kvinnor"),
+ub.l$age  <- gsub("ar", "years", ub.l$alder)
+ub.l$gender <- factor(ub.l$kon,
+                      levels = c("man", "kvinnor"),
                       labels = c("Men", "Women"))
-ub.l$edulevel <- sapply(ub.l$utbildningsnivå, function(x)
+ub.l$edulevel <- sapply(ub.l$utbildningsniva, function(x)
   dict_replace(x, value = edu_dict$se_level, key = edu_dict$en_level))
 
 # Factorize the education variable
