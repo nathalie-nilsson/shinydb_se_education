@@ -10,6 +10,20 @@
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+library(tidyverse)
+library(viridis)
+library(extrafont)
+loadfonts(quiet = TRUE)
+library(plotly)
+
+library(shiny)
+library(shinyWidgets)
+library(shinydashboard)
+
+
+# Global
+source("./global.R")
+
 # Layout
 source('./ui.R')
 
