@@ -26,7 +26,7 @@ source('./icons.R')
 
 # Data -------------------------------------------------------------------------
 # Source: https://www.scb.se. 
-ub <- read.csv2("~/data_science/data/scb_befolkningEfterUtbildningsNivå_län.csv", 
+ub <- read.csv2("./data/scb_befolkningEfterUtbildningsNivå_län.csv", 
                 sep = ";", 
                 skip = 2)
 
