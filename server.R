@@ -10,7 +10,7 @@
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   
   # Value boxes ----------------------------------------------------------------
   output$vbTotal <- renderValueBox({
@@ -114,6 +114,30 @@ server <- function(input, output) {
     
     # Render plot
     fig
+  })
+  
+  # Action buttons -------------------------------------------------------------
+  observeEvent(input$buttonSelectAll, {
+    
+      updatePrettyCheckboxGroup(
+        session,
+        inputId = "checkRegion",
+        label = "",
+        choices = unique(ub.en$region),
+        selected = unique(ub.en$region),
+        prettyOptions = list(status="warning")
+      )
+  })
+
+  observeEvent(input$buttonDeSelectAll, {
+    
+    updatePrettyCheckboxGroup(
+      session,
+      inputId = "checkRegion",
+      label = "",
+      choices = unique(ub.en$region), 
+      prettyOptions = list(status="warning")
+    )
   })
   
   # Output: Selected year ------------------------------------------------------

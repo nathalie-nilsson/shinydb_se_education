@@ -108,11 +108,28 @@ body <- dashboardBody(
               solidHeader = TRUE,
               
               title = h4("Select regions:"),
+              
+              actionBttn(
+                inputId = "buttonSelectAll",
+                label = "Select all", 
+                size = "sm",
+                style = "minimal",
+                color = "warning"
+              ),
+              
+              actionBttn(
+                inputId = "buttonDeSelectAll",
+                label = "De-select all",
+                size = "sm",
+                style = "minimal",
+                color = "warning"
+              ),
+              
               prettyCheckboxGroup(
                 inputId = "checkRegion",
                 label = "",
                 choices = unique(ub.en$region),
-                selected = unique(ub.en$region),
+                selected = unique(ub.en$region)[c(1, 10, 21)],
                 status = "warning"
               )
             )
